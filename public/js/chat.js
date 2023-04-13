@@ -1,10 +1,11 @@
 const socket = io()
 
-socket.on('countUpdated', (count) => {
-  console.log("count updated ",count);
+socket.on('welcome', (msg) => {
+  console.log(" ", msg);
 })
 
 document.querySelector('#target').addEventListener('click', () => {
-   socket.emit('increment')
+   var input = document.getElementById('input').value;
+   socket.emit('inputMsg', input)
 })
 

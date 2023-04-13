@@ -13,16 +13,24 @@ const publicDirectoryPath = path.join(__dirname,'../public');
 app.use(express.static(publicDirectoryPath));
 var count = 0
 
+// io.on('connection', (socket) => {
+//   console.log('a user connected');
+//   socket.emit('countUpdated',count)
+
+//   socket.on('increment', () => {
+//     count++
+//     socket.emit('countUpdated',count)
+//   })
+
+// });
+var msg = "welcome to My chat App"
 io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.emit('countUpdated',count)
+    socket.emit('welcome', msg);
 
-  socket.on('increment', () => {
-    count++
-    socket.emit('countUpdated',count)
-  })
-
-});
+    socket.on('inputMsg', (input) => {
+      io.emit('welcome', input);
+    })
+})
 
 server.listen( PORT , () => {
   console.log(`Port listing on ${PORT}`);
