@@ -26,9 +26,14 @@ var count = 0
 var msg = "welcome to My chat App"
 io.on('connection', (socket) => {
     socket.emit('welcome', msg);
+    socket.broadcast.emit('welcome','A new user has joined')
 
     socket.on('inputMsg', (input) => {
       io.emit('welcome', input);
+    })
+
+    socket.on('disconnect', () => {
+       io.emit('welcome','user has left')
     })
 })
 
