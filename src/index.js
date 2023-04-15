@@ -28,8 +28,9 @@ io.on('connection', (socket) => {
     socket.emit('welcome', msg);
     socket.broadcast.emit('welcome','A new user has joined')
 
-    socket.on('inputMsg', (input) => {
+    socket.on('inputMsg', (input,callback) => {
       io.emit('welcome', input);
+      callback('done')
     })
 
     socket.on('location', (data) => {

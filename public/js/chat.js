@@ -6,7 +6,9 @@ socket.on('welcome', (msg) => {
 
 document.querySelector('#target').addEventListener('click', () => {
    var input = document.getElementById('input').value;
-   socket.emit('inputMsg', input)
+   socket.emit('inputMsg', input , (msg) => {
+    console.log("Msg send ", msg);
+   })
 })
 
 document.querySelector("#send-location").addEventListener('click', () => {
