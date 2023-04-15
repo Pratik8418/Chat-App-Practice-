@@ -10,7 +10,7 @@ document.querySelector('#target').addEventListener('click', () => {
     if(error){
       return console.log(error);
     }
-    console.log("Msg send ");
+    console.log("message delivered!");
     
    })
 })
@@ -27,7 +27,9 @@ document.querySelector("#send-location").addEventListener('click', () => {
       "longitude" : position.coords.longitude
     }
     //console.log(data.latitude + " " + data.longitude)
-    socket.emit("location",data);
+    socket.emit("location",data, () => {
+      console.log("Location send successfully")
+    });
   
   })
 })
