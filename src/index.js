@@ -32,6 +32,10 @@ io.on('connection', (socket) => {
       io.emit('welcome', input);
     })
 
+    socket.on('location', (data) => {
+      io.emit('welcome',data);
+    })
+
     socket.on('disconnect', () => {
        io.emit('welcome','user has left')
     })
