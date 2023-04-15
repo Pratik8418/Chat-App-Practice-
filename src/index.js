@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('location', (data) => {
-      io.emit('welcome',data);
+      io.emit('welcome',`https://google.com/maps?q=${data.latitude},${data.longitude}`);
     })
 
     socket.on('disconnect', () => {
