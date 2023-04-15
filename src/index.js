@@ -3,6 +3,7 @@ const path = require('path')
 const http = require('http')
 const socketio = require('socket.io')
 const Filter = require('bad-words')
+const {generateMassage} = require('./utils/messages')
 
 const app = express();
 const PORT = process.env.PORT || 8000
@@ -24,10 +25,10 @@ var count = 0
 //   })
 
 // });
-var msg = "welcome to My chat App"
+
 io.on('connection', (socket) => {
-    socket.emit('welcome', msg);
-    socket.broadcast.emit('welcome','A new user has joined')
+    socket.emit('welcome', generateMassage('welcome to My chat App'));
+    socket.broadcast.emit('welcome',generateMassage('A new user has joined'))
 
     socket.on('inputMsg', (input,callback) => {
       const filter = new Filter()
@@ -35,7 +36,7 @@ io.on('connection', (socket) => {
       if(filter.isProfane(input)){
         return callback('Profanity is not allowed')
       }
-      io.emit('welcome', input);
+      io.emit('welcome', generateMassage(input));
       callback()
     })
 
@@ -45,7 +46,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
-       io.emit('welcome','user has left')
+       io.emit('welcome',generateMassage('user has left'))
     })
 })
 
