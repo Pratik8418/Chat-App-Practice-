@@ -4,9 +4,18 @@ const $messageForm = document.querySelector('#message-form')
 const $messageSendButton = document.querySelector('#target')
 const $messageInput = document.querySelector('#input')
 const $sendLocationButton = document.querySelector('#send-location')
+const $messagesDiv = document.querySelector("#messages")
+
+//Templates
+const messageTemplate = document.querySelector('#message-template').innerHTML
 
 socket.on('welcome', (msg) => {
-  console.log(" ", msg);
+  console.log(msg);
+  const html = Mustache.render(messageTemplate,{
+    msg
+  })
+  
+  $messagesDiv.insertAdjacentHTML('beforeend',html)
 })
 
 $messageForm.addEventListener('submit', (e) => {
