@@ -8,14 +8,24 @@ const $messagesDiv = document.querySelector("#messages")
 
 //Templates
 const messageTemplate = document.querySelector('#message-template').innerHTML
+const locationTemplate = document.querySelector('#location-message-template').innerHTML
 
 socket.on('welcome', (msg) => {
   console.log(msg);
   const html = Mustache.render(messageTemplate,{
     msg
   })
-  
+
   $messagesDiv.insertAdjacentHTML('beforeend',html)
+})
+
+socket.on('locationMessages', (url) => {
+   console.log(url);
+   const html = Mustache.render(locationTemplate,{
+    url
+   })
+
+   $messagesDiv.insertAdjacentHTML('beforeend',html)
 })
 
 $messageForm.addEventListener('submit', (e) => {
