@@ -1,1 +1,1 @@
-# Chat-App-Practice-
+# Chat-App
