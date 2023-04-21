@@ -1,9 +1,9 @@
 # Chat-App
 
-#Download the Code:
+# Download the Code:
 git clone https://github.com/Pratik8418/chat_app.git
 
-#Install dependencies using npm:
+# Install dependencies using npm:
 
 "dependencies": {
     "bad-words": "^3.0.0",
